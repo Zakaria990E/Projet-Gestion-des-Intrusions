@@ -1,0 +1,87 @@
+{
+  "report_id": "2c8e5278-06a3-40c9-a1b8-53451c9ed738",
+  "date": "2026-05-31T23:00:09.900323",
+  "project_name": "API Security Academic Auditor",
+  "context": "Academic and educational security analysis for mobile APIs",
+  "environment": "localhost",
+  "target_url": "http://127.0.0.1:9000",
+  "endpoints_analyzed": [
+    "/api/public"
+  ],
+  "checklist": [
+    {
+      "item": "Authentication Present",
+      "status": "not-applicable",
+      "description": "API should implement proper authentication mechanisms"
+    },
+    {
+      "item": "Authorization Server-Side",
+      "status": "not-applicable",
+      "description": "Authorization checks should be performed on the server side"
+    },
+    {
+      "item": "Sensitive Data Protected",
+      "status": "compliant",
+      "description": "Sensitive data should be protected in transit and at rest"
+    },
+    {
+      "item": "Technical Errors Masked",
+      "status": "compliant",
+      "description": "Error messages should not reveal technical details"
+    },
+    {
+      "item": "Security Headers Present",
+      "status": "non-compliant",
+      "description": "Security headers should be implemented"
+    },
+    {
+      "item": "Logging Recommended",
+      "status": "not-applicable",
+      "description": "Security events should be logged for monitoring (cannot be verified passively)"
+    },
+    {
+      "item": "Rate Limiting Recommended",
+      "status": "not-applicable",
+      "description": "API should implement rate limiting to prevent abuse (cannot be verified passively)"
+    }
+  ],
+  "endpoint_results": [
+    {
+      "endpoint": "/api/public",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested"
+    }
+  ],
+  "security_headers": {
+    "X-Content-Type-Options": false,
+    "X-Frame-Options": false,
+    "Content-Security-Policy": false
+  },
+  "issues": [
+    {
+      "severity": "Medium",
+      "category": "Missing Security Headers",
+      "description": "Missing security headers: X-Content-Type-Options, X-Frame-Options, Content-Security-Policy",
+      "recommendation": "Implement all required security headers"
+    }
+  ],
+  "risk_level": "Low",
+  "conclusion": "The API demonstrates good security practices with minimal issues identified. Continue monitoring and following security best practices to maintain this level of security. Security Score: 82/100.",
+  "severity_counts": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": 1,
+    "Low": 0
+  },
+  "security_score": 82,
+  "endpoints_404": []
+}

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Report - API Security Academic Auditor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #4CAF50;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .report-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .report-info h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .info-item {
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .info-item strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .risk-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+        
+        .risk-high {
+            background-color: #e74c3c;
+        }
+        
+        .risk-medium {
+            background-color: #f39c12;
+        }
+        
+        .risk-low {
+            background-color: #27ae60;
+        }
+        
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .checklist-table th,
+        .checklist-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .checklist-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .status-compliant {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .status-non-compliant {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .status-not-applicable {
+            color: #95a5a6;
+            font-style: italic;
+        }
+        
+        .endpoint-card {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .endpoint-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .endpoint-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .endpoint-detail {
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .issue-card {
+            background: #fff3cd;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .issue-card.high {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        
+        .issue-card.medium {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+        
+        .issue-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .issue-severity {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .severity-high {
+            background-color: #dc3545;
+        }
+        
+        .severity-medium {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        .conclusion {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .conclusion h3 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        .conclusion p {
+            color: #155724;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .no-issues {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 Security Audit Report</h1>
+            <div class="subtitle">API Security Academic Auditor</div>
+        </div>
+        
+        <div class="report-info">
+            <h2>Report Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Report ID:</strong>
+                    32d998b5-d6d9-4489-ba88-a65f79256cd8
+                </div>
+                <div class="info-item">
+                    <strong>Date:</strong>
+                    2026-05-31T22:40:36.967211
+                </div>
+                <div class="info-item">
+                    <strong>Environment:</strong>
+                    localhost
+                </div>
+                <div class="info-item">
+                    <strong>Target URL:</strong>
+                    https://juice-shop.herokuapp.com/
+                </div>
+                <div class="info-item">
+                    <strong>Risk Level:</strong>
+                    <span class="risk-badge risk-low">Low</span>
+                </div>
+                <div class="info-item">
+                    <strong>Context:</strong>
+                    Academic and educational security analysis for mobile APIs
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>OWASP Security Checklist</h2>
+            <table class="checklist-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Authentication Present</td>
+                        <td class="status-compliant">compliant</td>
+                        <td>API should implement proper authentication mechanisms</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Authorization Server-Side</td>
+                        <td class="status-compliant">compliant</td>
+                        <td>Authorization checks should be performed on the server side</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Sensitive Data Protected</td>
+                        <td class="status-compliant">compliant</td>
+                        <td>Sensitive data should be protected in transit and at rest</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Technical Errors Masked</td>
+                        <td class="status-compliant">compliant</td>
+                        <td>Error messages should not reveal technical details</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Security Headers Present</td>
+                        <td class="status-non-compliant">non-compliant</td>
+                        <td>Security headers should be implemented</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Logging Recommended</td>
+                        <td class="status-not-applicable">not-applicable</td>
+                        <td>Security events should be logged for monitoring (cannot be verified passively)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Rate Limiting Recommended</td>
+                        <td class="status-not-applicable">not-applicable</td>
+                        <td>API should implement rate limiting to prevent abuse (cannot be verified passively)</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>Endpoints Analyzed</h2>
+            
+            <div class="endpoint-card">
+                <h3>/api/public</h3>
+                <div class="endpoint-details">
+                    <div class="endpoint-detail">
+                        <strong>Status Code:</strong> 503
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Authentication:</strong> No
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Sensitive Data:</strong> None
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Error Messages:</strong> None
+                    </div>
+                </div>
+            </div>
+            
+            <div class="endpoint-card">
+                <h3>/api/profile</h3>
+                <div class="endpoint-details">
+                    <div class="endpoint-detail">
+                        <strong>Status Code:</strong> 503
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Authentication:</strong> Yes
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Sensitive Data:</strong> None
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Error Messages:</strong> None
+                    </div>
+                </div>
+            </div>
+            
+            <div class="endpoint-card">
+                <h3>/api/admin</h3>
+                <div class="endpoint-details">
+                    <div class="endpoint-detail">
+                        <strong>Status Code:</strong> 503
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Authentication:</strong> Yes
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Sensitive Data:</strong> None
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Error Messages:</strong> None
+                    </div>
+                </div>
+            </div>
+            
+            <div class="endpoint-card">
+                <h3>/api/debug</h3>
+                <div class="endpoint-details">
+                    <div class="endpoint-detail">
+                        <strong>Status Code:</strong> 503
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Authentication:</strong> No
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Sensitive Data:</strong> None
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Error Messages:</strong> None
+                    </div>
+                </div>
+            </div>
+            
+            <div class="endpoint-card">
+                <h3>/api/headers-check</h3>
+                <div class="endpoint-details">
+                    <div class="endpoint-detail">
+                        <strong>Status Code:</strong> 503
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Authentication:</strong> No
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Sensitive Data:</strong> None
+                    </div>
+                    <div class="endpoint-detail">
+                        <strong>Error Messages:</strong> None
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="section">
+            <h2>Security Issues Found</h2>
+            
+                
+                <div class="issue-card medium">
+                    <h3>Missing Security Headers</h3>
+                    <span class="issue-severity severity-medium">Medium</span>
+                    <p><strong>Description:</strong> Missing security headers: X-Content-Type-Options, X-Frame-Options, Content-Security-Policy</p>
+                    <p><strong>Recommendation:</strong> Implement all required security headers</p>
+                </div>
+                
+            
+        </div>
+        
+        <div class="section">
+            <h2>Security Headers</h2>
+            <table class="checklist-table">
+                <thead>
+                    <tr>
+                        <th>Header</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>X-Content-Type-Options</td>
+                        <td class="status-non-compliant">
+                            Missing
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>X-Frame-Options</td>
+                        <td class="status-non-compliant">
+                            Missing
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Content-Security-Policy</td>
+                        <td class="status-non-compliant">
+                            Missing
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="conclusion">
+                <h3>Conclusion</h3>
+                <p>The API demonstrates good security practices with minimal issues identified. Continue monitoring and following security best practices to maintain this level of security.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Academic Use Only</strong> - This report is generated for educational purposes only.</p>
+            <p>Generated by API Security Academic Auditor - 2026-05-31T22:40:36.967211</p>
+        </div>
+    </div>
+</body>
+</html>

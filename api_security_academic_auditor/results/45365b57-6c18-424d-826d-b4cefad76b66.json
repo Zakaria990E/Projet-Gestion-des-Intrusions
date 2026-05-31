@@ -1,0 +1,474 @@
+{
+  "report_id": "45365b57-6c18-424d-826d-b4cefad76b66",
+  "date": "2026-06-01T00:09:21.326821",
+  "project_name": "API Security Academic Auditor",
+  "context": "Academic and educational security analysis for mobile APIs",
+  "environment": "remote",
+  "target_url": "https://juice-shop.herokuapp.com",
+  "endpoints_analyzed": [
+    "/",
+    "/rest/products",
+    "/rest/products/search?q=apple",
+    "/api/Challenges"
+  ],
+  "checklist": [
+    {
+      "item": "Authentication Present",
+      "status": "not-applicable",
+      "description": "API should implement proper authentication mechanisms"
+    },
+    {
+      "item": "Authorization Server-Side",
+      "status": "not-applicable",
+      "description": "Authorization checks should be performed on the server side"
+    },
+    {
+      "item": "Sensitive Data Protected",
+      "status": "compliant",
+      "description": "Sensitive data should be protected in transit and at rest"
+    },
+    {
+      "item": "Technical Errors Masked",
+      "status": "non-compliant",
+      "description": "Error messages should not reveal technical details"
+    },
+    {
+      "item": "Security Headers Present",
+      "status": "non-compliant",
+      "description": "Security headers should be implemented"
+    },
+    {
+      "item": "Logging Recommended",
+      "status": "not-applicable",
+      "description": "Security events should be logged for monitoring (cannot be verified passively)"
+    },
+    {
+      "item": "Rate Limiting Recommended",
+      "status": "not-applicable",
+      "description": "API should implement rate limiting to prevent abuse (cannot be verified passively)"
+    }
+  ],
+  "endpoint_results": [
+    {
+      "endpoint": "/",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c",
+      "response_time": 0.573
+    },
+    {
+      "endpoint": "/rest/products",
+      "status_code": 500,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=utf-8",
+      "response_size": 2856,
+      "response_preview": "<html>\n  <head>\n    <meta charset='utf-8'> \n    <title>Error: Unexpected path: /rest/products</title>\n    <style>* {\n  margin: 0;\n  padding: 0;\n  outline: 0;\n}\n\nbody {\n  padding: 80px 100px;\n  font: 1",
+      "response_time": 0.55
+    },
+    {
+      "endpoint": "/rest/products/search?q=apple",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json; charset=utf-8",
+      "response_size": 921,
+      "response_preview": "{\"status\":\"success\",\"data\":[{\"id\":1,\"name\":\"Apple Juice (1000ml)\",\"description\":\"The all-time classic.\",\"price\":1.99,\"deluxePrice\":0.99,\"image\":\"apple_juice.jpg\",\"createdAt\":\"2026-05-31 23:04:34.077 +",
+      "response_time": 0.552
+    },
+    {
+      "endpoint": "/api/Challenges",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "mitigationUrl",
+        "mitigationUrl",
+        "mitigationUrl",
+        "key",
+        "name",
+        "mitigationUrl",
+        "mitigationUrl",
+        "mitigationUrl",
+        "mitigationUrl",
+        "key",
+        "name",
+        "key",
+        "name",
+        "key",
+        "name",
+        "key",
+        "mitigationUrl",
+        "key",
+        "name"
+      ],
+      "error_message_findings": [
+        {
+          "key": "mitigationUrl",
+          "path": "data[15].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[20].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[25].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[26].key",
+          "value": "errorHandlingChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "name",
+          "path": "data[26].name",
+          "value": "Error Handling",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[26].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[44].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[46].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[48].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[55].key",
+          "value": "noSqlCommandChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "name",
+          "path": "data[55].name",
+          "value": "NoSQL DoS",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[56].key",
+          "value": "noSqlOrdersChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "name",
+          "path": "data[56].name",
+          "value": "NoSQL Exfiltration",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[57].key",
+          "value": "noSqlReviewsChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "name",
+          "path": "data[57].name",
+          "value": "NoSQL Manipulation",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[84].key",
+          "value": "unionSqlInjectionChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[84].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[111].key",
+          "value": "aiDebuggingChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "name",
+          "path": "data[111].name",
+          "value": "AI Debugging",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json; charset=utf-8",
+      "response_size": 64798,
+      "response_preview": "{\"status\":\"success\",\"data\":[{\"id\":1,\"key\":\"passwordHashLeakChallenge\",\"name\":\"Password Hash Leak\",\"category\":\"Sensitive Data Exposure\",\"tags\":null,\"description\":\"Obtain the password (hash) of the curr",
+      "response_time": 0.562
+    }
+  ],
+  "security_headers": {
+    "X-Content-Type-Options": true,
+    "X-Frame-Options": true,
+    "Content-Security-Policy": false
+  },
+  "issues": [
+    {
+      "severity": "High",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/Challenges reveals technical error details",
+      "recommendation": "Implement generic error messages without exposing technical details",
+      "endpoint": "/api/Challenges",
+      "grouped_findings": [
+        {
+          "key": "mitigationUrl",
+          "path": "data[15].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[20].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[25].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[26].key",
+          "value": "errorHandlingChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "name",
+          "path": "data[26].name",
+          "value": "Error Handling",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[26].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[44].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[46].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[48].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[55].key",
+          "value": "noSqlCommandChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "name",
+          "path": "data[55].name",
+          "value": "NoSQL DoS",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[56].key",
+          "value": "noSqlOrdersChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "name",
+          "path": "data[56].name",
+          "value": "NoSQL Exfiltration",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[57].key",
+          "value": "noSqlReviewsChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "name",
+          "path": "data[57].name",
+          "value": "NoSQL Manipulation",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[84].key",
+          "value": "unionSqlInjectionChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "mitigationUrl",
+          "path": "data[84].mitigationUrl",
+          "value": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "reason": "Contains technical error pattern",
+          "severity": "High"
+        },
+        {
+          "key": "key",
+          "path": "data[111].key",
+          "value": "aiDebuggingChallenge",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        },
+        {
+          "key": "name",
+          "path": "data[111].name",
+          "value": "AI Debugging",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ]
+    },
+    {
+      "severity": "Medium",
+      "category": "Server Error Detected",
+      "description": "Endpoint /rest/products returned 500 server error",
+      "recommendation": "Investigate server-side exceptions and ensure production error handling is enabled."
+    },
+    {
+      "severity": "Medium",
+      "category": "Missing Security Headers",
+      "description": "Missing security headers: Content-Security-Policy",
+      "recommendation": "Implement all required security headers"
+    }
+  ],
+  "risk_level": "High",
+  "conclusion": "The API contains significant security vulnerabilities requiring immediate remediation. Security Score: 49/100.",
+  "severity_counts": {
+    "Critical": 0,
+    "High": 1,
+    "Medium": 2,
+    "Low": 0
+  },
+  "security_score": 49,
+  "risk_classification": "Medium Risk",
+  "endpoints_404": [],
+  "endpoint_stats": {
+    "tested": 4,
+    "failed": 0,
+    "not_found": 0
+  },
+  "scan_statistics": {
+    "total_endpoints": 4,
+    "successful_requests": 4,
+    "failed_requests": 0,
+    "sensitive_data_findings": 0,
+    "information_disclosure_findings": 19,
+    "authentication_issues": 0,
+    "missing_headers": 1,
+    "total_vulnerabilities": 3
+  },
+  "owasp_risks": [
+    "API8:2023 Security Misconfiguration"
+  ],
+  "scan_duration": 2.24
+}

@@ -1,0 +1,111 @@
+{
+  "report_id": "4d5534aa-85a1-4740-b11a-2b1978c2af20",
+  "date": "2026-05-31T23:50:28.739353",
+  "project_name": "API Security Academic Auditor",
+  "context": "Academic and educational security analysis for mobile APIs",
+  "environment": "remote",
+  "target_url": "https://demo.owasp-juice.shop",
+  "endpoints_analyzed": [
+    "/ /rest/products /rest/products/search?q=apple /api/Challenges"
+  ],
+  "checklist": [
+    {
+      "item": "Authentication Present",
+      "status": "not-applicable",
+      "description": "API should implement proper authentication mechanisms"
+    },
+    {
+      "item": "Authorization Server-Side",
+      "status": "not-applicable",
+      "description": "Authorization checks should be performed on the server side"
+    },
+    {
+      "item": "Sensitive Data Protected",
+      "status": "compliant",
+      "description": "Sensitive data should be protected in transit and at rest"
+    },
+    {
+      "item": "Technical Errors Masked",
+      "status": "compliant",
+      "description": "Error messages should not reveal technical details"
+    },
+    {
+      "item": "Security Headers Present",
+      "status": "non-compliant",
+      "description": "Security headers should be implemented"
+    },
+    {
+      "item": "Logging Recommended",
+      "status": "not-applicable",
+      "description": "Security events should be logged for monitoring (cannot be verified passively)"
+    },
+    {
+      "item": "Rate Limiting Recommended",
+      "status": "not-applicable",
+      "description": "API should implement rate limiting to prevent abuse (cannot be verified passively)"
+    }
+  ],
+  "endpoint_results": [
+    {
+      "endpoint": "/ /rest/products /rest/products/search?q=apple /api/Challenges",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c"
+    }
+  ],
+  "security_headers": {
+    "X-Content-Type-Options": true,
+    "X-Frame-Options": true,
+    "Content-Security-Policy": false
+  },
+  "issues": [
+    {
+      "severity": "Medium",
+      "category": "Missing Security Headers",
+      "description": "Missing security headers: Content-Security-Policy",
+      "recommendation": "Implement all required security headers"
+    }
+  ],
+  "risk_level": "Low",
+  "conclusion": "The API demonstrates strong security practices with only minor issues identified. Security Score: 82/100.",
+  "severity_counts": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": 1,
+    "Low": 0
+  },
+  "security_score": 82,
+  "risk_classification": "Secure",
+  "endpoints_404": [],
+  "endpoint_stats": {
+    "tested": 1,
+    "failed": 0,
+    "not_found": 0
+  },
+  "scan_statistics": {
+    "total_endpoints": 1,
+    "successful_requests": 1,
+    "failed_requests": 0,
+    "sensitive_data_findings": 0,
+    "information_disclosure_findings": 0,
+    "authentication_issues": 0,
+    "missing_headers": 1,
+    "total_vulnerabilities": 1
+  },
+  "owasp_risks": [
+    "API8:2023 Security Misconfiguration"
+  ],
+  "scan_duration": 0.62
+}

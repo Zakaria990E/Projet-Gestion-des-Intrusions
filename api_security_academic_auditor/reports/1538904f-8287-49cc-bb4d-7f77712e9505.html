@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Report - API Security Academic Auditor</title>
+    <link rel="stylesheet" href="report_style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-icon">🔒</div>
+                <div>
+                    <h1 class="header-title">API Security Academic Auditor</h1>
+                    <p class="header-subtitle">Professional Security Analysis Report</p>
+                </div>
+            </div>
+            <div class="header-meta">
+                <div class="header-meta-item">
+                    <span>📅</span>
+                    <span>2026-06-01T00:25:00.550430</span>
+                </div>
+                <div class="header-meta-item">
+                    <span>🆔</span>
+                    <span>1538904f-8287-49cc-bb4d-7f77712e9505</span>
+                </div>
+                <div class="header-meta-item">
+                    <span>🌐</span>
+                    <span>https://juice-shop.herokuapp.com/#/</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Dashboard Summary -->
+        <div class="dashboard-summary">
+            <div class="summary-card">
+                <div class="summary-card-icon blue">📊</div>
+                <div class="summary-card-content">
+                    <div class="summary-card-label">Security Score</div>
+                    <div class="summary-card-value">82/100</div>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-icon red">⚠️</div>
+                <div class="summary-card-content">
+                    <div class="summary-card-label">Total Vulnerabilities</div>
+                    <div class="summary-card-value">1</div>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-icon green">🔍</div>
+                <div class="summary-card-content">
+                    <div class="summary-card-label">Endpoints Tested</div>
+                    <div class="summary-card-value">1</div>
+                </div>
+            </div>
+            
+            <div class="summary-card">
+                <div class="summary-card-icon orange">⏱️</div>
+                <div class="summary-card-content">
+                    <div class="summary-card-label">Scan Duration</div>
+                    <div class="summary-card-value">0.61s</div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Security Score Section -->
+        <div class="security-score-section">
+            <div class="security-score-header">
+                <div class="security-score-title">
+                    <span>🎯</span>
+                    <span>Security Score</span>
+                </div>
+            </div>
+            <div class="security-score-content">
+                <div class="security-score-display">
+                    <div class="security-score-value">82</div>
+                    <div class="security-score-label">out of 100</div>
+                    
+                    <div class="security-score-badge secure">Secure</div>
+                    
+                </div>
+                <div class="security-score-progress">
+                    <div class="security-score-progress-bar">
+                        
+                        <div class="security-score-progress-fill green" style="width: 82%"></div>
+                        
+                    </div>
+                    <div class="security-score-legend">
+                        <span>0</span>
+                        <span>25</span>
+                        <span>50</span>
+                        <span>75</span>
+                        <span>100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Severity Summary -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">📊</span>
+                    Severity Summary
+                </h2>
+            </div>
+            <div class="severity-summary">
+                <div class="severity-card critical">
+                    <div class="severity-card-label">Critical</div>
+                    <div class="severity-card-value">0</div>
+                </div>
+                <div class="severity-card high">
+                    <div class="severity-card-label">High</div>
+                    <div class="severity-card-value">0</div>
+                </div>
+                <div class="severity-card medium">
+                    <div class="severity-card-label">Medium</div>
+                    <div class="severity-card-value">1</div>
+                </div>
+                <div class="severity-card low">
+                    <div class="severity-card-label">Low</div>
+                    <div class="severity-card-value">0</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Endpoint Statistics -->
+        
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">🔍</span>
+                    Endpoint Statistics
+                </h2>
+            </div>
+            <div class="endpoint-statistics">
+                <div class="endpoint-stat-card">
+                    <div class="endpoint-stat-icon">✅</div>
+                    <div class="endpoint-stat-content">
+                        <div class="endpoint-stat-label">Tested</div>
+                        <div class="endpoint-stat-value">1</div>
+                    </div>
+                </div>
+                <div class="endpoint-stat-card">
+                    <div class="endpoint-stat-icon">❌</div>
+                    <div class="endpoint-stat-content">
+                        <div class="endpoint-stat-label">Failed</div>
+                        <div class="endpoint-stat-value">0</div>
+                    </div>
+                </div>
+                <div class="endpoint-stat-card">
+                    <div class="endpoint-stat-icon">🔍</div>
+                    <div class="endpoint-stat-content">
+                        <div class="endpoint-stat-label">Not Found</div>
+                        <div class="endpoint-stat-value">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Scan Statistics -->
+        
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">📈</span>
+                    Scan Statistics
+                </h2>
+            </div>
+            <div class="scan-statistics">
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Total Endpoints</div>
+                    <div class="scan-stat-value">1</div>
+                </div>
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Successful Requests</div>
+                    <div class="scan-stat-value">1</div>
+                </div>
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Failed Requests</div>
+                    <div class="scan-stat-value">0</div>
+                </div>
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Sensitive Data Findings</div>
+                    <div class="scan-stat-value">0</div>
+                </div>
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Information Disclosure</div>
+                    <div class="scan-stat-value">0</div>
+                </div>
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Authentication Issues</div>
+                    <div class="scan-stat-value">0</div>
+                </div>
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Missing Headers</div>
+                    <div class="scan-stat-value">1</div>
+                </div>
+                <div class="scan-stat-card">
+                    <div class="scan-stat-label">Total Vulnerabilities</div>
+                    <div class="scan-stat-value">1</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- OWASP Risks -->
+        
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">🛡️</span>
+                    OWASP API Risks Identified
+                </h2>
+            </div>
+            <div class="owasp-risks">
+                
+                <div class="owasp-risk-card">
+                    <div class="owasp-risk-badge">OWASP</div>
+                    <div class="owasp-risk-title">API8:2023 Security Misconfiguration</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <!-- Endpoints Not Found -->
+        
+        
+        <!-- OWASP Security Checklist -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">✅</span>
+                    OWASP Security Checklist
+                </h2>
+            </div>
+            <table class="checklist-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Authentication Present</td>
+                        <td class="status-not-applicable">not-applicable</td>
+                        <td>API should implement proper authentication mechanisms</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Authorization Server-Side</td>
+                        <td class="status-not-applicable">not-applicable</td>
+                        <td>Authorization checks should be performed on the server side</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Sensitive Data Protected</td>
+                        <td class="status-compliant">compliant</td>
+                        <td>Sensitive data should be protected in transit and at rest</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Technical Errors Masked</td>
+                        <td class="status-compliant">compliant</td>
+                        <td>Error messages should not reveal technical details</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Security Headers Present</td>
+                        <td class="status-non-compliant">non-compliant</td>
+                        <td>Security headers should be implemented</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Logging Recommended</td>
+                        <td class="status-not-applicable">not-applicable</td>
+                        <td>Security events should be logged for monitoring (cannot be verified passively)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Rate Limiting Recommended</td>
+                        <td class="status-not-applicable">not-applicable</td>
+                        <td>API should implement rate limiting to prevent abuse (cannot be verified passively)</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Endpoints Analyzed -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">🔍</span>
+                    Endpoints Analyzed
+                </h2>
+            </div>
+            <div class="endpoint-cards">
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-card-header">
+                        <h3 class="endpoint-card-title">
+                            <span class="endpoint-card-method">GET</span>
+                            /
+                        </h3>
+                        <div class="endpoint-card-status">
+                            
+                            <span class="endpoint-card-badge tested">Tested</span>
+                            
+                        </div>
+                    </div>
+                    <div class="endpoint-card-details">
+                        <div class="endpoint-detail">
+                            <div class="endpoint-detail-label">Status Code</div>
+                            <div class="endpoint-detail-value">200</div>
+                        </div>
+                        <div class="endpoint-detail">
+                            <div class="endpoint-detail-label">Authentication</div>
+                            <div class="endpoint-detail-value">No</div>
+                        </div>
+                        <div class="endpoint-detail">
+                            <div class="endpoint-detail-label">Sensitive Data</div>
+                            <div class="endpoint-detail-value">None</div>
+                        </div>
+                        <div class="endpoint-detail">
+                            <div class="endpoint-detail-label">Error Messages</div>
+                            <div class="endpoint-detail-value">None</div>
+                        </div>
+                    </div>
+                    <div class="endpoint-response-info">
+                        <div class="info-row">
+                            <span class="info-label">Content-Type</span>
+                            <span class="info-value">text/html; charset=UTF-8</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Response Size</span>
+                            <span class="info-value">9903 bytes</span>
+                        </div>
+                        
+                        <div class="info-row">
+                            <span class="info-label">Response Time</span>
+                            <span class="info-value">0.606s</span>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="response-preview">
+                        <strong>Response Preview:</strong><br>
+                        <!--
+  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.
+  ~ SPDX-License-Identifier: MIT
+  -->
+
+<!doctype html>
+<html lang="en" data-beasties-container>
+<head>
+  <meta c
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Security Issues Found -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">⚠️</span>
+                    Security Issues Found
+                </h2>
+            </div>
+            
+                <div class="issues-list">
+                
+                <div class="issue-card medium">
+                    <div class="issue-card-header">
+                        <h3 class="issue-card-title">Missing Security Headers</h3>
+                        <span class="issue-card-severity medium">Medium</span>
+                    </div>
+                    <p class="issue-card-description">Missing security headers: Content-Security-Policy
+                    
+                    </p>
+                    
+                    <div class="issue-card-recommendation">
+                        <strong>Recommendation:</strong> Implement all required security headers
+                    </div>
+                    
+                </div>
+                
+                </div>
+            
+        </div>
+        
+        <!-- Security Headers -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon">🔐</span>
+                    Security Headers
+                </h2>
+            </div>
+            <div class="security-headers-grid">
+                
+                <div class="header-card">
+                    <div class="header-card-name">X-Content-Type-Options</div>
+                    <div class="header-card-badge present">
+                        Present
+                    </div>
+                </div>
+                
+                <div class="header-card">
+                    <div class="header-card-name">X-Frame-Options</div>
+                    <div class="header-card-badge present">
+                        Present
+                    </div>
+                </div>
+                
+                <div class="header-card">
+                    <div class="header-card-name">Content-Security-Policy</div>
+                    <div class="header-card-badge missing">
+                        Missing
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="section">
+            <div class="conclusion-card">
+                <div class="conclusion-icon">📋</div>
+                <div class="conclusion-content">
+                    <div class="conclusion-title">Executive Summary</div>
+                    <div class="conclusion-text">The API demonstrates strong security practices with only minor issues identified. Security Score: 82/100.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px;">
+            <p><strong>Academic Use Only</strong> - This report is generated for educational purposes only.</p>
+            <p>Generated by API Security Academic Auditor - 2026-06-01T00:25:00.550430</p>
+        </div>
+    </div>
+</body>
+</html>

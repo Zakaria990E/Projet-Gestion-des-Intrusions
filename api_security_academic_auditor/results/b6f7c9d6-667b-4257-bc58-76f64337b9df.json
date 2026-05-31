@@ -1,0 +1,122 @@
+{
+  "report_id": "b6f7c9d6-667b-4257-bc58-76f64337b9df",
+  "date": "2026-05-31T22:52:01.928179",
+  "project_name": "API Security Academic Auditor",
+  "context": "Academic and educational security analysis for mobile APIs",
+  "environment": "localhost",
+  "target_url": "https://jsonplaceholder.typicode.com",
+  "endpoints_analyzed": [
+    "/ users",
+    "/posts",
+    "/comments"
+  ],
+  "checklist": [
+    {
+      "item": "Authentication Present",
+      "status": "not-applicable",
+      "description": "API should implement proper authentication mechanisms"
+    },
+    {
+      "item": "Authorization Server-Side",
+      "status": "not-applicable",
+      "description": "Authorization checks should be performed on the server side"
+    },
+    {
+      "item": "Sensitive Data Protected",
+      "status": "non-compliant",
+      "description": "Sensitive data should be protected in transit and at rest"
+    },
+    {
+      "item": "Technical Errors Masked",
+      "status": "non-compliant",
+      "description": "Error messages should not reveal technical details"
+    },
+    {
+      "item": "Security Headers Present",
+      "status": "non-compliant",
+      "description": "Security headers should be implemented"
+    },
+    {
+      "item": "Logging Recommended",
+      "status": "not-applicable",
+      "description": "Security events should be logged for monitoring (cannot be verified passively)"
+    },
+    {
+      "item": "Rate Limiting Recommended",
+      "status": "not-applicable",
+      "description": "API should implement rate limiting to prevent abuse (cannot be verified passively)"
+    }
+  ],
+  "endpoint_results": [
+    {
+      "endpoint": "/ users",
+      "status_code": 404,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "error_messages_found": [
+        "Endpoint not found (404)"
+      ],
+      "security_headers": {},
+      "test_status": "not_tested"
+    },
+    {
+      "endpoint": "/posts",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "error_messages_found": [],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested"
+    },
+    {
+      "endpoint": "/comments",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [
+        "pin"
+      ],
+      "error_messages_found": [],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested"
+    }
+  ],
+  "security_headers": {
+    "X-Content-Type-Options": true,
+    "X-Frame-Options": false,
+    "Content-Security-Policy": false
+  },
+  "issues": [
+    {
+      "severity": "High",
+      "category": "Sensitive Data Exposure",
+      "description": "Endpoint /comments exposes sensitive data: pin",
+      "recommendation": "Remove sensitive data from responses or implement proper encryption"
+    },
+    {
+      "severity": "Medium",
+      "category": "Missing Security Headers",
+      "description": "Missing security headers: X-Frame-Options, Content-Security-Policy",
+      "recommendation": "Implement all required security headers"
+    }
+  ],
+  "risk_level": "Medium",
+  "conclusion": "The API has 2 security issues that should be addressed. While no critical vulnerabilities were found, several areas need improvement to meet security best practices. Security Score: 42/100.",
+  "severity_counts": {
+    "Critical": 0,
+    "High": 1,
+    "Medium": 1,
+    "Low": 0
+  },
+  "security_score": 42,
+  "endpoints_404": [
+    "/ users"
+  ]
+}

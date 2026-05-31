@@ -1,0 +1,406 @@
+{
+  "report_id": "f34b3e55-2bc7-4c63-84f4-ae3555550ad0",
+  "date": "2026-05-31T23:10:46.626078",
+  "project_name": "API Security Academic Auditor",
+  "context": "Academic and educational security analysis for mobile APIs",
+  "environment": "localhost",
+  "target_url": "http://127.0.0.1:9000",
+  "endpoints_analyzed": [
+    "/api/public",
+    "/api/profile",
+    "/api/admin",
+    "/api/debug",
+    "/api/login?username=admin&password=admin123",
+    "/api/headers-check"
+  ],
+  "checklist": [
+    {
+      "item": "Authentication Present",
+      "status": "non-compliant",
+      "description": "API should implement proper authentication mechanisms"
+    },
+    {
+      "item": "Authorization Server-Side",
+      "status": "non-compliant",
+      "description": "Authorization checks should be performed on the server side"
+    },
+    {
+      "item": "Sensitive Data Protected",
+      "status": "non-compliant",
+      "description": "Sensitive data should be protected in transit and at rest"
+    },
+    {
+      "item": "Technical Errors Masked",
+      "status": "non-compliant",
+      "description": "Error messages should not reveal technical details"
+    },
+    {
+      "item": "Security Headers Present",
+      "status": "non-compliant",
+      "description": "Security headers should be implemented"
+    },
+    {
+      "item": "Logging Recommended",
+      "status": "not-applicable",
+      "description": "Security events should be logged for monitoring (cannot be verified passively)"
+    },
+    {
+      "item": "Rate Limiting Recommended",
+      "status": "not-applicable",
+      "description": "API should implement rate limiting to prevent abuse (cannot be verified passively)"
+    }
+  ],
+  "endpoint_results": [
+    {
+      "endpoint": "/api/public",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json",
+      "response_size": 90,
+      "response_preview": "{\"message\":\"This is a public endpoint\",\"data\":\"Public information accessible to everyone\"}"
+    },
+    {
+      "endpoint": "/api/profile",
+      "status_code": 200,
+      "has_auth": true,
+      "sensitive_data_found": [
+        "api_token",
+        "secret_key"
+      ],
+      "sensitive_data_findings": [
+        {
+          "key": "api_token",
+          "path": "api_token",
+          "value": "demo_token_12345",
+          "reason": "Sensitive key name: api_token",
+          "severity": "High"
+        },
+        {
+          "key": "secret_key",
+          "path": "secret_key",
+          "value": "demo_secret_key_abc",
+          "reason": "Sensitive key name: secret_key",
+          "severity": "High"
+        }
+      ],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json",
+      "response_size": 143,
+      "response_preview": "{\"user_id\":1,\"username\":\"admin\",\"email\":\"admin@example.com\",\"role\":\"isAdmin\",\"api_token\":\"demo_token_12345\",\"secret_key\":\"demo_secret_key_abc\"}"
+    },
+    {
+      "endpoint": "/api/admin",
+      "status_code": 200,
+      "has_auth": true,
+      "sensitive_data_found": [
+        "database_password"
+      ],
+      "sensitive_data_findings": [
+        {
+          "key": "database_password",
+          "path": "admin_data.database_password",
+          "value": "admin_password_123",
+          "reason": "Sensitive key name: database_password",
+          "severity": "High"
+        }
+      ],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json",
+      "response_size": 128,
+      "response_preview": "{\"message\":\"Admin dashboard\",\"admin_data\":{\"total_users\":100,\"system_status\":\"active\",\"database_password\":\"admin_password_123\"}}"
+    },
+    {
+      "endpoint": "/api/debug",
+      "status_code": 500,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "error_type",
+        "error_message",
+        "traceback",
+        "debug_info",
+        "internal_server_error",
+        "file_path"
+      ],
+      "error_message_findings": [
+        {
+          "key": "error_type",
+          "path": "error_type",
+          "value": "ZeroDivisionError",
+          "reason": "Error-related key name: error_type",
+          "severity": "Medium"
+        },
+        {
+          "key": "error_message",
+          "path": "error_message",
+          "value": "division by zero",
+          "reason": "Error-related key name: error_message",
+          "severity": "Medium"
+        },
+        {
+          "key": "traceback",
+          "path": "traceback",
+          "value": "Traceback (most recent call last):\n  File \"C:\\Users\\AMD\\Desktop\\IntrusionProject\\api_security_academ...",
+          "reason": "Error-related key name: traceback",
+          "severity": "High"
+        },
+        {
+          "key": "debug_info",
+          "path": "debug_info",
+          "value": "This is debug information that should not be exposed",
+          "reason": "Error-related key name: debug_info",
+          "severity": "High"
+        },
+        {
+          "key": "internal_server_error",
+          "path": "internal_server_error",
+          "value": "Database connection failed at line 42",
+          "reason": "Error-related key name: internal_server_error",
+          "severity": "Medium"
+        },
+        {
+          "key": "file_path",
+          "path": "file_path",
+          "value": "/app/api/debug.py",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json",
+      "response_size": 487,
+      "response_preview": "{\"error_type\":\"ZeroDivisionError\",\"error_message\":\"division by zero\",\"traceback\":\"Traceback (most recent call last):\\n  File \\\"C:\\\\Users\\\\AMD\\\\Desktop\\\\IntrusionProject\\\\api_security_academic_auditor\\"
+    },
+    {
+      "endpoint": "/api/login?username=admin&password=admin123",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [
+        "token"
+      ],
+      "sensitive_data_findings": [
+        {
+          "key": "token",
+          "path": "token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.demo",
+          "reason": "Sensitive key name: token",
+          "severity": "High"
+        }
+      ],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json",
+      "response_size": 159,
+      "response_preview": "{\"status\":\"success\",\"message\":\"Login successful\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.demo\",\"user_id\":1,\"role\":\"isAdmin\",\"session_id\":\"session_12345\"}"
+    },
+    {
+      "endpoint": "/api/headers-check",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [],
+      "error_message_findings": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "application/json",
+      "response_size": 113,
+      "response_preview": "{\"message\":\"This endpoint checks security headers\",\"note\":\"Security headers should be implemented in production\"}"
+    }
+  ],
+  "security_headers": {
+    "X-Content-Type-Options": false,
+    "X-Frame-Options": false,
+    "Content-Security-Policy": false
+  },
+  "issues": [
+    {
+      "severity": "Medium",
+      "category": "Server Error Detected",
+      "description": "Endpoint /api/debug returned 500 server error",
+      "recommendation": "Investigate server-side exceptions and ensure production error handling is enabled."
+    },
+    {
+      "severity": "High",
+      "category": "Sensitive Data Exposure",
+      "description": "Endpoint /api/profile exposes sensitive data: api_token at api_token",
+      "recommendation": "Remove sensitive data from responses or implement proper encryption",
+      "details": {
+        "key": "api_token",
+        "path": "api_token",
+        "value": "demo_token_12345",
+        "reason": "Sensitive key name: api_token"
+      }
+    },
+    {
+      "severity": "High",
+      "category": "Sensitive Data Exposure",
+      "description": "Endpoint /api/profile exposes sensitive data: secret_key at secret_key",
+      "recommendation": "Remove sensitive data from responses or implement proper encryption",
+      "details": {
+        "key": "secret_key",
+        "path": "secret_key",
+        "value": "demo_secret_key_abc",
+        "reason": "Sensitive key name: secret_key"
+      }
+    },
+    {
+      "severity": "High",
+      "category": "Sensitive Data Exposure",
+      "description": "Endpoint /api/admin exposes sensitive data: database_password at admin_data.database_password",
+      "recommendation": "Remove sensitive data from responses or implement proper encryption",
+      "details": {
+        "key": "database_password",
+        "path": "admin_data.database_password",
+        "value": "admin_password_123",
+        "reason": "Sensitive key name: database_password"
+      }
+    },
+    {
+      "severity": "High",
+      "category": "Sensitive Data Exposure",
+      "description": "Endpoint /api/login?username=admin&password=admin123 exposes sensitive data: token at token",
+      "recommendation": "Remove sensitive data from responses or implement proper encryption",
+      "details": {
+        "key": "token",
+        "path": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.demo",
+        "reason": "Sensitive key name: token"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: error_type at error_type",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "error_type",
+        "path": "error_type",
+        "value": "ZeroDivisionError",
+        "reason": "Error-related key name: error_type"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: error_message at error_message",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "error_message",
+        "path": "error_message",
+        "value": "division by zero",
+        "reason": "Error-related key name: error_message"
+      }
+    },
+    {
+      "severity": "High",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: traceback at traceback",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "traceback",
+        "path": "traceback",
+        "value": "Traceback (most recent call last):\n  File \"C:\\Users\\AMD\\Desktop\\IntrusionProject\\api_security_academ...",
+        "reason": "Error-related key name: traceback"
+      }
+    },
+    {
+      "severity": "High",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: debug_info at debug_info",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "debug_info",
+        "path": "debug_info",
+        "value": "This is debug information that should not be exposed",
+        "reason": "Error-related key name: debug_info"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: internal_server_error at internal_server_error",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "internal_server_error",
+        "path": "internal_server_error",
+        "value": "Database connection failed at line 42",
+        "reason": "Error-related key name: internal_server_error"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: file_path at file_path",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "file_path",
+        "path": "file_path",
+        "value": "/app/api/debug.py",
+        "reason": "Contains technical error pattern"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Missing Security Headers",
+      "description": "Missing security headers: X-Content-Type-Options, X-Frame-Options, Content-Security-Policy",
+      "recommendation": "Implement all required security headers"
+    },
+    {
+      "severity": "Critical",
+      "category": "Authentication",
+      "description": "API endpoints lack proper authentication",
+      "recommendation": "Implement authentication for all sensitive endpoints"
+    }
+  ],
+  "risk_level": "High",
+  "conclusion": "The API has 13 security issues requiring immediate attention. Multiple critical vulnerabilities were identified that could lead to data exposure or unauthorized access. Security Score: 0/100.",
+  "severity_counts": {
+    "Critical": 1,
+    "High": 6,
+    "Medium": 6,
+    "Low": 0
+  },
+  "security_score": 0,
+  "endpoints_404": []
+}

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Security Academic Auditor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>API Security Academic Auditor</h1>
+            <p class="subtitle">Educational Security Analysis Tool for Mobile APIs</p>
+        </header>
+
+        
+
+        <main>
+            <section class="analysis-section">
+                <h2>Launch Security Analysis</h2>
+                <form id="analysisForm">
+                    <div class="form-group">
+                        <label for="targetUrl">Target API URL :</label>
+                        <input 
+                            type="url" 
+                            id="targetUrl" 
+                            name="targetUrl" 
+                            value="http://127.0.0.1:9000" 
+                            required
+                            placeholder="http://127.0.0.1:9000"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="endpoints">Endpoints (comma-separated, required):</label>
+                        <input 
+                            type="text" 
+                            id="endpoints" 
+                            name="endpoints" 
+                            placeholder="/api/public, /api/profile, /api/admin"
+                            required
+                        >
+                        <small>Enter multiple endpoints separated by commas</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        🔍 Launch Analysis
+                    </button>
+                </form>
+            </section>
+
+            <section id="resultSection" class="result-section hidden">
+                <h2>Analysis Result</h2>
+                <div id="resultContent"></div>
+            </section>
+
+            <section class="reports-section">
+                <h2>Generated Reports</h2>
+                <button id="loadReports" class="btn btn-secondary">📋 Load Reports</button>
+                <div id="reportsList"></div>
+            </section>
+
+            <section class="info-section">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Start Demo API</h3>
+                            <p>Launch the local demo API: <code>uvicorn demo_api:app --reload --port 9000</code></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Configure Target</h3>
+                            <p>Enter the demo API URL (default: http://127.0.0.1:9000)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Launch Analysis</h3>
+                            <p>Click "Launch Analysis" to perform passive security checks</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>View Report</h3>
+                            <p>Access the generated HTML report with findings and recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features-section">
+                <h2>Analysis Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Authentication Check</h3>
+                        <p>Verifies if sensitive endpoints require authentication</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔑</div>
+                        <h3>Sensitive Data Detection</h3>
+                        <p>Identifies exposed sensitive data in responses</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚠️</div>
+                        <h3>Error Message Analysis</h3>
+                        <p>Detects technical error details that could aid attackers</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Security Headers</h3>
+                        <p>Checks for essential security headers</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>OWASP Checklist</h3>
+                        <p>Evaluates compliance with OWASP best practices</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Risk Assessment</h3>
+                        <p>Provides educational risk level evaluation</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><strong>Academic Project</strong> - API Security Academic Auditor</p>
+            <p>This tool is for educational purposes only. Do not use on production systems without authorization.</p>
+            <p>Built with Python, FastAPI, and OWASP Security Guidelines</p>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById('analysisForm');
+        const resultSection = document.getElementById('resultSection');
+        const resultContent = document.getElementById('resultContent');
+        const loadReportsBtn = document.getElementById('loadReports');
+        const reportsList = document.getElementById('reportsList');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const targetUrl = document.getElementById('targetUrl').value;
+            const endpointsInput = document.getElementById('endpoints').value;
+            
+            const requestData = {
+                target_url: targetUrl
+            };
+            
+            if (endpointsInput.trim()) {
+                // Split by comma and trim whitespace
+                requestData.endpoints = endpointsInput.split(',').map(e => e.trim()).filter(e => e.length > 0);
+            }
+            
+            console.log('Request data:', requestData); // Debug logging
+            
+            resultSection.classList.remove('hidden');
+            resultContent.innerHTML = '<div class="loading">⏳ Analysis in progress...</div>';
+            
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultContent.innerHTML = `
+                        <div class="success-message">
+                            <h3>✅ Analysis Completed Successfully</h3>
+                            <p><strong>Report ID:</strong> ${data.report_id}</p>
+                            <p><strong>Status:</strong> ${data.status}</p>
+                            <div class="report-actions">
+                                <a href="/reports/${data.report_id}/html" target="_blank" class="btn btn-success">
+                                    📄 View HTML Report
+                                </a>
+                                <a href="/reports/${data.report_id}" target="_blank" class="btn btn-secondary">
+                                    📋 View JSON Report
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    resultContent.innerHTML = `
+                        <div class="error-message">
+                            <h3>❌ Analysis Failed</h3>
+                            <p>${data.detail || 'Unknown error'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultContent.innerHTML = `
+                    <div class="error-message">
+                        <h3>❌ Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        });
+
+        loadReportsBtn.addEventListener('click', async () => {
+            reportsList.innerHTML = '<div class="loading">⏳ Loading reports...</div>';
+            
+            try {
+                const response = await fetch('/reports');
+                const data = await response.json();
+                
+                if (data.reports && data.reports.length > 0) {
+                    reportsList.innerHTML = `
+                        <table class="reports-table">
+                            <thead>
+                                <tr>
+                                    <th>Report ID</th>
+                                    <th>Date</th>
+                                    <th>Target URL</th>
+                                    <th>Risk Level</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.reports.map(report => `
+                                    <tr>
+                                        <td><code>${report.report_id.substring(0, 8)}...</code></td>
+                                        <td>${new Date(report.date).toLocaleString()}</td>
+                                        <td>${report.target_url}</td>
+                                        <td><span class="risk-badge risk-${report.risk_level.toLowerCase()}">${report.risk_level}</span></td>
+                                        <td>
+                                            <a href="/reports/${report.report_id}/html" target="_blank" class="btn-link">HTML</a>
+                                            <a href="/reports/${report.report_id}" target="_blank" class="btn-link">JSON</a>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    reportsList.innerHTML = '<p class="no-reports">No reports generated yet.</p>';
+                }
+            } catch (error) {
+                reportsList.innerHTML = `<p class="error">Failed to load reports: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

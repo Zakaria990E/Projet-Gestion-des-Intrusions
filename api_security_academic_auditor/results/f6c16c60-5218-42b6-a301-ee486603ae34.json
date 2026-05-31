@@ -1,0 +1,157 @@
+{
+  "report_id": "f6c16c60-5218-42b6-a301-ee486603ae34",
+  "date": "2026-05-31T22:39:41.400263",
+  "project_name": "API Security Academic Auditor",
+  "context": "Academic and educational security analysis for mobile APIs",
+  "environment": "localhost",
+  "target_url": "http://127.0.0.1:9000",
+  "endpoints_analyzed": [
+    "/api/public",
+    "/api/profile",
+    "/api/admin",
+    "/api/debug",
+    "/api/headers-check"
+  ],
+  "checklist": [
+    {
+      "item": "Authentication Present",
+      "status": "compliant",
+      "description": "API should implement proper authentication mechanisms"
+    },
+    {
+      "item": "Authorization Server-Side",
+      "status": "compliant",
+      "description": "Authorization checks should be performed on the server side"
+    },
+    {
+      "item": "Sensitive Data Protected",
+      "status": "non-compliant",
+      "description": "Sensitive data should be protected in transit and at rest"
+    },
+    {
+      "item": "Technical Errors Masked",
+      "status": "non-compliant",
+      "description": "Error messages should not reveal technical details"
+    },
+    {
+      "item": "Security Headers Present",
+      "status": "non-compliant",
+      "description": "Security headers should be implemented"
+    },
+    {
+      "item": "Logging Recommended",
+      "status": "not-applicable",
+      "description": "Security events should be logged for monitoring (cannot be verified passively)"
+    },
+    {
+      "item": "Rate Limiting Recommended",
+      "status": "not-applicable",
+      "description": "API should implement rate limiting to prevent abuse (cannot be verified passively)"
+    }
+  ],
+  "endpoint_results": [
+    {
+      "endpoint": "/api/public",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "error_messages_found": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      }
+    },
+    {
+      "endpoint": "/api/profile",
+      "status_code": 200,
+      "has_auth": true,
+      "sensitive_data_found": [
+        "token",
+        "secret",
+        "role",
+        "isAdmin"
+      ],
+      "error_messages_found": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      }
+    },
+    {
+      "endpoint": "/api/admin",
+      "status_code": 200,
+      "has_auth": true,
+      "sensitive_data_found": [
+        "password"
+      ],
+      "error_messages_found": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      }
+    },
+    {
+      "endpoint": "/api/debug",
+      "status_code": 500,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "error_messages_found": [
+        "traceback",
+        "debug"
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      }
+    },
+    {
+      "endpoint": "/api/headers-check",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "error_messages_found": [],
+      "security_headers": {
+        "X-Content-Type-Options": false,
+        "X-Frame-Options": false,
+        "Content-Security-Policy": false
+      }
+    }
+  ],
+  "security_headers": {
+    "X-Content-Type-Options": false,
+    "X-Frame-Options": false,
+    "Content-Security-Policy": false
+  },
+  "issues": [
+    {
+      "severity": "High",
+      "category": "Sensitive Data Exposure",
+      "description": "Endpoint /api/profile exposes sensitive data: token, secret, role, isAdmin",
+      "recommendation": "Remove sensitive data from responses or implement proper encryption"
+    },
+    {
+      "severity": "High",
+      "category": "Sensitive Data Exposure",
+      "description": "Endpoint /api/admin exposes sensitive data: password",
+      "recommendation": "Remove sensitive data from responses or implement proper encryption"
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: traceback, debug",
+      "recommendation": "Implement generic error messages without technical details"
+    },
+    {
+      "severity": "Medium",
+      "category": "Missing Security Headers",
+      "description": "Missing security headers: X-Content-Type-Options, X-Frame-Options, Content-Security-Policy",
+      "recommendation": "Implement all required security headers"
+    }
+  ],
+  "risk_level": "High",
+  "conclusion": "The API has 4 security issues requiring immediate attention. Multiple critical vulnerabilities were identified that could lead to data exposure or unauthorized access."
+}

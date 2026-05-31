@@ -1,0 +1,324 @@
+{
+  "report_id": "661a412f-f843-463e-a582-208674c96a58",
+  "date": "2026-05-31T23:14:37.401195",
+  "project_name": "API Security Academic Auditor",
+  "context": "Academic and educational security analysis for mobile APIs",
+  "environment": "remote",
+  "target_url": "https://juice-shop.herokuapp.com/#/",
+  "endpoints_analyzed": [
+    "/api/public",
+    "/api/profile",
+    "/api/admin",
+    "/api/debug",
+    "/api/login?username=admin&password=admin123",
+    "/api/headers-check"
+  ],
+  "checklist": [
+    {
+      "item": "Authentication Present",
+      "status": "non-compliant",
+      "description": "API should implement proper authentication mechanisms"
+    },
+    {
+      "item": "Authorization Server-Side",
+      "status": "non-compliant",
+      "description": "Authorization checks should be performed on the server side"
+    },
+    {
+      "item": "Sensitive Data Protected",
+      "status": "compliant",
+      "description": "Sensitive data should be protected in transit and at rest"
+    },
+    {
+      "item": "Technical Errors Masked",
+      "status": "non-compliant",
+      "description": "Error messages should not reveal technical details"
+    },
+    {
+      "item": "Security Headers Present",
+      "status": "non-compliant",
+      "description": "Security headers should be implemented"
+    },
+    {
+      "item": "Logging Recommended",
+      "status": "not-applicable",
+      "description": "Security events should be logged for monitoring (cannot be verified passively)"
+    },
+    {
+      "item": "Rate Limiting Recommended",
+      "status": "not-applicable",
+      "description": "API should implement rate limiting to prevent abuse (cannot be verified passively)"
+    }
+  ],
+  "endpoint_results": [
+    {
+      "endpoint": "/api/public",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "text"
+      ],
+      "error_message_findings": [
+        {
+          "key": "text",
+          "path": "text",
+          "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c"
+    },
+    {
+      "endpoint": "/api/profile",
+      "status_code": 200,
+      "has_auth": true,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "text"
+      ],
+      "error_message_findings": [
+        {
+          "key": "text",
+          "path": "text",
+          "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c"
+    },
+    {
+      "endpoint": "/api/admin",
+      "status_code": 200,
+      "has_auth": true,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "text"
+      ],
+      "error_message_findings": [
+        {
+          "key": "text",
+          "path": "text",
+          "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c"
+    },
+    {
+      "endpoint": "/api/debug",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "text"
+      ],
+      "error_message_findings": [
+        {
+          "key": "text",
+          "path": "text",
+          "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c"
+    },
+    {
+      "endpoint": "/api/login?username=admin&password=admin123",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "text"
+      ],
+      "error_message_findings": [
+        {
+          "key": "text",
+          "path": "text",
+          "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c"
+    },
+    {
+      "endpoint": "/api/headers-check",
+      "status_code": 200,
+      "has_auth": false,
+      "sensitive_data_found": [],
+      "sensitive_data_findings": [],
+      "error_messages_found": [
+        "text"
+      ],
+      "error_message_findings": [
+        {
+          "key": "text",
+          "path": "text",
+          "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+          "reason": "Contains technical error pattern",
+          "severity": "Medium"
+        }
+      ],
+      "security_headers": {
+        "X-Content-Type-Options": true,
+        "X-Frame-Options": true,
+        "Content-Security-Policy": false
+      },
+      "test_status": "tested",
+      "content_type": "text/html; charset=UTF-8",
+      "response_size": 9903,
+      "response_preview": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-License-Identifier: MIT\n  -->\n\n<!doctype html>\n<html lang=\"en\" data-beasties-container>\n<head>\n  <meta c"
+    }
+  ],
+  "security_headers": {
+    "X-Content-Type-Options": true,
+    "X-Frame-Options": true,
+    "Content-Security-Policy": false
+  },
+  "issues": [
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/public reveals technical error details: text at text",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "text",
+        "path": "text",
+        "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+        "reason": "Contains technical error pattern"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/profile reveals technical error details: text at text",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "text",
+        "path": "text",
+        "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+        "reason": "Contains technical error pattern"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/admin reveals technical error details: text at text",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "text",
+        "path": "text",
+        "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+        "reason": "Contains technical error pattern"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/debug reveals technical error details: text at text",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "text",
+        "path": "text",
+        "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+        "reason": "Contains technical error pattern"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/login?username=admin&password=admin123 reveals technical error details: text at text",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "text",
+        "path": "text",
+        "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+        "reason": "Contains technical error pattern"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Information Disclosure",
+      "description": "Endpoint /api/headers-check reveals technical error details: text at text",
+      "recommendation": "Implement generic error messages without technical details",
+      "details": {
+        "key": "text",
+        "path": "text",
+        "value": "<!--\n  ~ Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.\n  ~ SPDX-Lice...",
+        "reason": "Contains technical error pattern"
+      }
+    },
+    {
+      "severity": "Medium",
+      "category": "Missing Security Headers",
+      "description": "Missing security headers: Content-Security-Policy",
+      "recommendation": "Implement all required security headers"
+    },
+    {
+      "severity": "Critical",
+      "category": "Authentication",
+      "description": "API endpoints lack proper authentication",
+      "recommendation": "Implement authentication for all sensitive endpoints"
+    }
+  ],
+  "risk_level": "High",
+  "conclusion": "The API has 8 security issues requiring immediate attention. Multiple critical vulnerabilities were identified that could lead to data exposure or unauthorized access. Security Score: 0/100.",
+  "severity_counts": {
+    "Critical": 1,
+    "High": 0,
+    "Medium": 7,
+    "Low": 0
+  },
+  "security_score": 0,
+  "endpoints_404": []
+}
